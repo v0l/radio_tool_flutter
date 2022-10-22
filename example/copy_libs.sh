@@ -1,0 +1,1 @@
+cp -f ../radio_tool/build/*.dylib /Users/kieran/Documents/GitHub/radio_tool_flutter/example/build/macos/Build/Products/Debug/radio_tool_flutter_example.app/Contents/Frameworks

@@ -1,8 +1,12 @@
+import 'dart:ffi';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:radio_tool_flutter/radio_info.dart';
 import 'dart:async';
 
-import 'package:flutter/services.dart';
-import 'package:radio_tool_flutter/radio_tool_flutter.dart';
+import 'package:radio_tool_flutter/radio_tool.dart';
+import 'package:radio_tool_flutter/radiotool_ffi.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,8 +20,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<String> _radios = [];
-  final _radioToolFlutterPlugin = RadioToolFlutter();
+  List<RadioInfo> _radios = [];
 
   @override
   void initState() {
@@ -27,24 +30,9 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    List<String> radios = [];
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      final rsp = await _radioToolFlutterPlugin.listRadios();
-      radios = rsp!.toList();
-    } on PlatformException catch (e) {
-      print(e.message);
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _radios = radios;
-    });
+    final rt = await RadioTool.create();
+    final radios = rt.listRadios();
+    setState(() => _radios = radios);
   }
 
   @override
@@ -57,7 +45,7 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [..._radios.map((e) => Text(e))]),
+              children: [..._radios.map((e) => Text(e.port))]),
         ),
       ),
     );

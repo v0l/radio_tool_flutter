@@ -1,0 +1,22 @@
+PODS:
+  - FlutterMacOS (1.0.0)
+  - radio_tool_flutter (0.0.1):
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - FlutterMacOS (from `Flutter/ephemeral`)
+  - radio_tool_flutter (from `Flutter/ephemeral/.symlinks/plugins/radio_tool_flutter/macos`)
+
+EXTERNAL SOURCES:
+  FlutterMacOS:
+    :path: Flutter/ephemeral
+  radio_tool_flutter:
+    :path: Flutter/ephemeral/.symlinks/plugins/radio_tool_flutter/macos
+
+SPEC CHECKSUMS:
+  FlutterMacOS: ae6af50a8ea7d6103d888583d46bd8328a7e9811
+  radio_tool_flutter: 5de40079867cfaf1d8cd8c16a5d0f8c5fbb7f5df
+
+PODFILE CHECKSUM: 6eac6b3292e5142cfc23bdeb71848a40ec51c14c
+
+COCOAPODS: 1.11.3
